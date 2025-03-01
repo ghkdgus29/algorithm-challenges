@@ -1,5 +1,8 @@
 name: Auto Merge PR at 3:00 AM
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 on:
   schedule:
     - cron: '0 3 * * *'  # Runs at 3:00 AM every day
