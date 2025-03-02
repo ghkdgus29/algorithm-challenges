@@ -2,7 +2,7 @@ name: Auto Merge PR at 3:00 AM
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # Runs at 3:00 AM every day
+    - cron: '0 18 * * *'  # Runs at 3:00 AM every day
 
 jobs:
   auto-merge:
