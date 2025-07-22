@@ -17,7 +17,7 @@ function init() {
 
 function solve({ N, M, array }) {
 	let start;
-	let visited = Array(N)
+	const visited = Array(N)
 		.fill()
 		.map(() => Array(M).fill(false));
 	let hasCycle = false;
@@ -27,44 +27,35 @@ function solve({ N, M, array }) {
 
 	outer: for (let i = 0; i < N; i++) {
 		for (let j = 0; j < M; j++) {
-			visited = Array(N)
-				.fill()
-				.map(() => Array(M).fill(false));
+			if (!visited[i][j]) {
+				start = [i, j];
+				visited[i][j] = true;
 
-			start = [i, j];
-			visited[i][j] = true;
+				const result = dfs(i, j, 0, -1, -1);
 
-			const result = dfs(i, j, 0);
-
-			if (result) {
-				hasCycle = true;
-				break outer;
+				if (result) {
+					hasCycle = true;
+					break outer;
+				}
 			}
 		}
 	}
 
-	function dfs(r, c, depth) {
+	function dfs(r, c, depth, parentR, parentC) {
 		let result = false;
 
 		for (let i = 0; i < dr.length; i++) {
 			const nr = r + dr[i];
 			const nc = c + dc[i];
 
-			if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
-				if (
-					depth >= 3 &&
-					nr === start[0] &&
-					nc === start[1] &&
-					visited[nr][nc]
-				) {
-					return true;
-				}
+			if (nr < 0 || nr >= N || nc < 0 || nc >= M) continue;
+			if (array[nr][nc] !== array[r][c]) continue;
 
-				if (!visited[nr][nc] && array[r][c] === array[nr][nc]) {
-					visited[nr][nc] = true;
-					result = dfs(nr, nc, depth + 1);
-					if (result) return true;
-				}
+			if (visited[nr][nc]) {
+				if (nr !== parentR || nc !== parentC) return true;
+			} else {
+				visited[nr][nc] = true;
+				if (dfs(nr, nc, depth + 1, r, c)) return true;
 			}
 		}
 
