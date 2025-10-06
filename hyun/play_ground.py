@@ -1,9 +1,5 @@
 import collections
 
-a = collections.deque()
-a.append("1")
-a.append("2")
-a.append("3")
-a.appendleft("0")
-
-print("".join(a))
+a = [1, 1, 2, 2, 3, 4]
+counter = collections.Counter(a)
+print(counter.most_common(2))
