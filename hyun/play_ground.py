@@ -1,6 +1,5 @@
-a = [1, 2, 3, 4, 5]
+import collections
 
-print(a[1:3:-1])
-a[1:3] = a[1:3:-1]
-
-print(a)
+a = [1, 1, 2, 2, 3, 4]
+counter = collections.Counter(a)
+print(counter.most_common(2))
