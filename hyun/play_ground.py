@@ -1,9 +1,6 @@
-import collections
+a = [1, 2, 3, 4, 5]
 
-a = collections.deque()
-a.append("1")
-a.append("2")
-a.append("3")
-a.appendleft("0")
+print(a[1:3:-1])
+a[1:3] = a[1:3:-1]
 
-print("".join(a))
+print(a)
