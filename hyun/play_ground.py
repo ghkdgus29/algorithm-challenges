@@ -1,6 +1,12 @@
-import sys
+a = [1, 2, 3]
 
-a = [i % 2 == 0 for i in range(10)]
+b = "".join(a)
+print(b)
 
-print(sys.maxsize)
+
+def swap(a):
+    a[0], a[1] = a[1], a[0]
+
+
+swap(a)
 print(a)
