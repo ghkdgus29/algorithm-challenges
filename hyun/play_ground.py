@@ -1,8 +1,12 @@
-a = "hi"
+a = [1, 2, 3]
 
-print(a[2:])
+b = "".join(a)
+print(b)
 
-a = "hh1"
-print(a == a[::-1])
 
-print(type(sorted([3, 2])))
+def swap(a):
+    a[0], a[1] = a[1], a[0]
+
+
+swap(a)
+print(a)
