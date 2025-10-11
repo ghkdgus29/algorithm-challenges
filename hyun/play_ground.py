@@ -1,12 +1,4 @@
-a = [1, 2, 3]
+a = set([1, 2, 2, 3])
+b = set([2, 2])
 
-b = "".join(a)
-print(b)
-
-
-def swap(a):
-    a[0], a[1] = a[1], a[0]
-
-
-swap(a)
-print(a)
+print(a.intersection(b))
