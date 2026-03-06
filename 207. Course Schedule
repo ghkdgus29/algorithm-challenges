@@ -1,0 +1,29 @@
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graph = collections.defaultdict(list)
+        for n1, n2 in prerequisites:
+            graph[n2].append(n1)
+        
+        visit = [False] * numCourses
+        
+        def is_cycle(visited, cur):
+            if cur in visited:
+                return True
+            if visit[cur]:
+                return False
+
+            cycle = False
+            visit[cur] = True
+            visited.add(cur)
+            for nxt in graph.get(cur, []):
+                cycle |= is_cycle(visited, nxt)
+            visited.remove(cur)
+            return cycle
+            
+        cycle = False
+        for start_node in graph.keys():
+            if not visit[start_node]:
+                cycle |= is_cycle(set(), start_node)
+
+        return not cycle
+        
